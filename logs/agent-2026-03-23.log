@@ -1,0 +1,121 @@
+[12:14:03 pm] [INFO ] DabCloud Agent started — DabCloud
+[12:14:03 pm] [INFO ] Checking queue every 60 minutes
+[12:14:03 pm] [INFO ] Scheduled post times: 08:00, 12:00, 18:00 IST
+[12:14:03 pm] [─────] ──────────────────────────────────────────────────
+[12:14:03 pm] [INFO ] Checking content queue...
+[12:14:03 pm] [INFO ] Found 2 pending item(s) in queue.
+[12:14:03 pm] [─────] ──────────────────────────────────────────────────
+[12:14:03 pm] [INFO ] Processing: "How to Repurpose a Blog Post into 10 Pieces of Content"
+[12:14:03 pm] [INFO ] Platforms: linkedin,twitter
+[12:14:03 pm] [INFO ] Generating linkedin content...
+[12:14:03 pm] [ERROR] Failed to generate for linkedin: Could not resolve authentication method. Expected either apiKey or authToken to be set. Or for one of the "X-Api-Key" or "Authorization" headers to be explicitly omitted
+[12:14:03 pm] [INFO ] Generating twitter content...
+[12:14:03 pm] [ERROR] Failed to generate for twitter: Could not resolve authentication method. Expected either apiKey or authToken to be set. Or for one of the "X-Api-Key" or "Authorization" headers to be explicitly omitted
+[12:14:03 pm] [ERROR] "How to Repurpose a Blog Post into 10 Pieces of Content" failed completely. Will retry next run.
+[12:14:03 pm] [INFO ] 1 more items in queue. Will process at next scheduled time.
+[12:15:32 pm] [INFO ] DabCloud Agent started — DabCloud
+[12:15:32 pm] [INFO ] Checking queue every 60 minutes
+[12:15:32 pm] [INFO ] Scheduled post times: 08:00, 12:00, 18:00 IST
+[12:15:32 pm] [─────] ──────────────────────────────────────────────────
+[12:15:32 pm] [INFO ] Checking content queue...
+[12:15:32 pm] [INFO ] Found 2 pending item(s) in queue.
+[12:15:32 pm] [─────] ──────────────────────────────────────────────────
+[12:15:32 pm] [INFO ] Processing: "How to Repurpose a Blog Post into 10 Pieces of Content"
+[12:15:32 pm] [INFO ] Platforms: linkedin,twitter
+[12:15:32 pm] [INFO ] Generating linkedin content...
+[12:15:32 pm] [ERROR] Failed to generate for linkedin: API key missing
+[12:15:32 pm] [INFO ] Generating twitter content...
+[12:15:32 pm] [ERROR] Failed to generate for twitter: API key missing
+[12:15:32 pm] [ERROR] "How to Repurpose a Blog Post into 10 Pieces of Content" failed completely. Will retry next run.
+[12:15:32 pm] [INFO ] 1 more items in queue. Will process at next scheduled time.
+[12:16:40 pm] [INFO ] DabCloud Agent started — DabCloud
+[12:16:40 pm] [INFO ] Checking queue every 60 minutes
+[12:16:40 pm] [INFO ] Scheduled post times: 08:00, 12:00, 18:00 IST
+[12:16:40 pm] [─────] ──────────────────────────────────────────────────
+[12:16:40 pm] [INFO ] Checking content queue...
+[12:16:40 pm] [INFO ] Found 2 pending item(s) in queue.
+[12:16:40 pm] [─────] ──────────────────────────────────────────────────
+[12:16:40 pm] [INFO ] Processing: "How to Repurpose a Blog Post into 10 Pieces of Content"
+[12:16:40 pm] [INFO ] Platforms: linkedin,twitter
+[12:16:40 pm] [INFO ] Generating linkedin content...
+[12:16:46 pm] [✓ OK ] linkedin content generated (1430 chars)
+[12:16:47 pm] [INFO ] Posting to linkedin...
+[12:16:58 pm] [ERROR] Failed to post to linkedin: fetch failed
+[12:17:00 pm] [INFO ] Generating twitter content...
+[12:17:04 pm] [✓ OK ] twitter content generated (776 chars)
+[12:17:05 pm] [INFO ] Posting to twitter...
+[12:17:05 pm] [ERROR] Failed to post to twitter: Twitter post failed: 401 — {
+  "title": "Unauthorized",
+  "type": "about:blank",
+  "status": 401,
+  "detail": "Unauthorized"
+}
+[12:17:07 pm] [ERROR] "How to Repurpose a Blog Post into 10 Pieces of Content" failed completely. Will retry next run.
+[12:17:07 pm] [INFO ] 1 more items in queue. Will process at next scheduled time.
+[12:41:54 pm] [INFO ] DabCloud Agent started — DabCloud
+[12:41:54 pm] [INFO ] Checking queue every 60 minutes
+[12:41:54 pm] [INFO ] Scheduled post times: 08:00, 12:00, 18:00 IST
+[12:41:54 pm] [─────] ──────────────────────────────────────────────────
+[12:41:54 pm] [INFO ] Checking content queue...
+[12:41:54 pm] [INFO ] Found 2 pending item(s) in queue.
+[12:41:54 pm] [─────] ──────────────────────────────────────────────────
+[12:41:54 pm] [INFO ] Processing: "How to Repurpose a Blog Post into 10 Pieces of Content"
+[12:41:54 pm] [INFO ] Platforms: linkedin,twitter
+[12:41:54 pm] [WARN ] linkedin is disabled in settings. Skipping.
+[12:41:54 pm] [WARN ] twitter is disabled in settings. Skipping.
+[12:41:54 pm] [ERROR] Agent crashed: ENOENT: no such file or directory, open '/Users/sarath/dabcloud-agent/posted/posted.csv'
+[12:42:18 pm] [INFO ] DabCloud Agent started — DabCloud
+[12:42:18 pm] [INFO ] Checking queue every 60 minutes
+[12:42:18 pm] [INFO ] Scheduled post times: 08:00, 12:00, 18:00 IST
+[12:42:18 pm] [─────] ──────────────────────────────────────────────────
+[12:42:18 pm] [INFO ] Checking content queue...
+[12:42:18 pm] [INFO ] Found 2 pending item(s) in queue.
+[12:42:18 pm] [─────] ──────────────────────────────────────────────────
+[12:42:18 pm] [INFO ] Processing: "How to Repurpose a Blog Post into 10 Pieces of Content"
+[12:42:18 pm] [INFO ] Platforms: linkedin,twitter
+[12:42:18 pm] [WARN ] linkedin is disabled in settings. Skipping.
+[12:42:18 pm] [WARN ] twitter is disabled in settings. Skipping.
+[12:42:18 pm] [✓ OK ] "How to Repurpose a Blog Post into 10 Pieces of Content" fully posted to all platforms.
+[12:42:18 pm] [INFO ] 1 more items in queue. Will process at next scheduled time.
+[12:51:27 pm] [INFO ] DabCloud Agent started — DabCloud
+[12:51:27 pm] [INFO ] Checking queue every 60 minutes
+[12:51:27 pm] [INFO ] Scheduled post times: 08:00, 12:00, 18:00 IST
+[12:51:27 pm] [─────] ──────────────────────────────────────────────────
+[12:51:27 pm] [INFO ] Checking content queue...
+[12:51:27 pm] [INFO ] Found 2 pending item(s) in queue.
+[12:51:27 pm] [─────] ──────────────────────────────────────────────────
+[12:51:27 pm] [INFO ] Processing: "How to Repurpose a Blog Post into 10 Pieces of Content"
+[12:51:27 pm] [INFO ] Platforms: linkedin,twitter
+[12:51:27 pm] [INFO ] Generating linkedin content...
+[12:51:31 pm] [✓ OK ] linkedin content generated (1328 chars)
+[12:51:32 pm] [INFO ] Posting to linkedin...
+[12:51:33 pm] [ERROR] Failed to post to linkedin: LinkedIn post failed: 401 — {"status":401,"serviceErrorCode":65601,"code":"REVOKED_ACCESS_TOKEN","message":"The token used in the request has been revoked by the user"}
+[12:51:35 pm] [WARN ] twitter is disabled in settings. Skipping.
+[12:51:35 pm] [ERROR] "How to Repurpose a Blog Post into 10 Pieces of Content" failed completely. Will retry next run.
+[12:51:35 pm] [INFO ] 1 more items in queue. Will process at next scheduled time.
+[12:53:11 pm] [INFO ] DabCloud Agent started — DabCloud
+[12:53:11 pm] [INFO ] Checking queue every 60 minutes
+[12:53:11 pm] [INFO ] Scheduled post times: 08:00, 12:00, 18:00 IST
+[12:53:11 pm] [─────] ──────────────────────────────────────────────────
+[12:53:11 pm] [INFO ] Checking content queue...
+[12:53:11 pm] [INFO ] Found 1 pending item(s) in queue.
+[12:53:11 pm] [─────] ──────────────────────────────────────────────────
+[12:53:11 pm] [INFO ] Processing: "5 Signs Your Business Needs a Content Strategy"
+[12:53:11 pm] [INFO ] Platforms: linkedin,twitter,facebook
+[12:53:11 pm] [INFO ] Generating linkedin content...
+[12:53:16 pm] [✓ OK ] linkedin content generated (1423 chars)
+[12:53:17 pm] [INFO ] Posting to linkedin...
+[12:53:19 pm] [✓ OK ] Posted to linkedin! https://www.linkedin.com/feed/
+[12:53:21 pm] [WARN ] twitter is disabled in settings. Skipping.
+[12:53:21 pm] [INFO ] Generating facebook content...
+[12:53:25 pm] [✓ OK ] facebook content generated (1052 chars)
+[12:53:26 pm] [INFO ] Posting to facebook...
+[12:53:26 pm] [ERROR] Failed to post to facebook: Facebook post failed: 400 — {"error":{"message":"Invalid OAuth access token data.","type":"OAuthException","code":190,"fbtrace_id":"AoCy0qGGuoWR5JuF12Yob8k"}}
+[12:53:28 pm] [WARN ] "5 Signs Your Business Needs a Content Strategy" posted with some errors. Check logs.
+[1:02:54 pm] [INFO ] DabCloud Autonomous Agent started
+[1:02:54 pm] [INFO ] Finding trending topic...
+[1:02:57 pm] [OK   ] Topic: "AI-Driven Content Repurposing: The Future of Sustainable Marketing"
+[1:02:57 pm] [INFO ] Generating LinkedIn post...
+[1:03:00 pm] [OK   ] Generated (1329 chars)
+[1:03:00 pm] [INFO ] Posting to LinkedIn...
+[1:03:01 pm] [OK   ] Posted to LinkedIn!

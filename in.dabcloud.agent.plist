@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- Service name -->
+  <key>Label</key>
+  <string>in.dabcloud.agent</string>
+
+  <!-- Command to run -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/local/bin/node</string>
+    <string>/Users/sarath/dabcloud-agent/agent.js</string>
+  </array>
+
+  <!-- Auto-start when you log in -->
+  <key>RunAtLoad</key>
+  <true/>
+
+  <!-- Restart automatically if it crashes -->
+  <key>KeepAlive</key>
+  <true/>
+
+  <!-- Log output files -->
+  <key>StandardOutPath</key>
+  <string>/Users/sarath/dabcloud-agent/logs/stdout.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/sarath/dabcloud-agent/logs/stderr.log</string>
+
+  <!-- Working directory -->
+  <key>WorkingDirectory</key>
+  <string>/Users/sarath/dabcloud-agent</string>
+
+  <!-- Environment variables -->
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>NODE_ENV</key>
+    <string>production</string>
+  </dict>
+</dict>
+</plist>

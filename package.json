@@ -1,0 +1,17 @@
+{
+  "name": "dabcloud-agent",
+  "version": "1.0.0",
+  "description": "DabCloud background content repurposing agent for Mac",
+  "type": "module",
+  "scripts": {
+    "start": "node agent.js",
+    "force": "node agent.js --force",
+    "add": "node add.js",
+    "list": "node add.js --list"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.24.0",
+    "oauth-1.0a": "^2.2.6",
+    "openai": "^6.32.0"
+  }
+}
