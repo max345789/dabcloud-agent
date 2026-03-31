@@ -1,0 +1,902 @@
+[
+  {
+    "day": "1",
+    "week": "W1",
+    "platform": "Twitter/X",
+    "content_type": "Thread \ud83e\uddf5",
+    "title": "\"Why I built an AI CLI agent\" \u2014 founder story thread. Pain of switching between browser/IDE/terminal. How Krud AI solves it.",
+    "cta": "Follow + RT",
+    "status": "",
+    "notes": "Use Claude to draft thread"
+  },
+  {
+    "day": "2",
+    "week": "W1",
+    "platform": "LinkedIn",
+    "content_type": "Text Post",
+    "title": "\"The future of dev tools is CLI-first\" \u2014 hot take post on why GUIs are overhead for power users. Position Krud AI.",
+    "cta": "Comment + Follow",
+    "status": "",
+    "notes": "AI-generate 3 hook variants"
+  },
+  {
+    "day": "3",
+    "week": "W1",
+    "platform": "YouTube Shorts / Reels",
+    "content_type": "Demo Video (60s)",
+    "title": "\"Watch me deploy a full app from terminal using Krud AI\" \u2014 speed demo, no narration, lo-fi beats.",
+    "cta": "Link in bio",
+    "status": "",
+    "notes": "Screen record + CapCut edit"
+  },
+  {
+    "day": "4",
+    "week": "W1",
+    "platform": "Twitter/X",
+    "content_type": "Single Tweet",
+    "title": "\"Your terminal is smarter than your IDE. You just haven't met Krud AI yet.\" \u2014 punchy one-liner.",
+    "cta": "Engagement",
+    "status": "",
+    "notes": "A/B test 2 versions"
+  },
+  {
+    "day": "5",
+    "week": "W1",
+    "platform": "Dev.to / Hashnode",
+    "content_type": "Blog Post",
+    "title": "\"What is Krud AI? The AI Agent That Lives in Your Terminal\" \u2014 explainer blog. What it does, who it's for, quick start.",
+    "cta": "Blog traffic \u2192 waitlist",
+    "status": "",
+    "notes": "Claude: outline + first draft"
+  },
+  {
+    "day": "6",
+    "week": "W1",
+    "platform": "Reddit",
+    "content_type": "Discussion Post",
+    "title": "Post in r/commandline, r/devtools: \"I built a CLI agent that handles repetitive dev tasks with AI \u2014 AMA\"",
+    "cta": "Comments + upvotes",
+    "status": "",
+    "notes": "Genuine community engagement"
+  },
+  {
+    "day": "7",
+    "week": "W1",
+    "platform": "Instagram",
+    "content_type": "Carousel",
+    "title": "\"5 Things You Didn't Know Your Terminal Could Do\" \u2014 visual carousel with Krud AI as the punchline on slide 5.",
+    "cta": "Save + Share",
+    "status": "",
+    "notes": "Canva + AI copy"
+  },
+  {
+    "day": "8",
+    "week": "W2",
+    "platform": "Twitter/X",
+    "content_type": "Thread \ud83e\uddf5",
+    "title": "\"5 real tasks I automated this week with Krud AI\" \u2014 show actual CLI commands + results. Logs, deploys, DB ops.",
+    "cta": "Follow + try it",
+    "status": "",
+    "notes": "Screenshot real terminal sessions"
+  },
+  {
+    "day": "9",
+    "week": "W2",
+    "platform": "LinkedIn",
+    "content_type": "Carousel (PDF)",
+    "title": "\"CLI vs GUI: Why Senior Devs Prefer the Terminal\" \u2014 data-backed carousel. Cite surveys, add Krud AI as the bridge.",
+    "cta": "Share + Save",
+    "status": "",
+    "notes": "AI-research stats, Canva design"
+  },
+  {
+    "day": "10",
+    "week": "W2",
+    "platform": "YouTube",
+    "content_type": "Tutorial (5 min)",
+    "title": "\"Getting Started with Krud AI in 5 Minutes\" \u2014 install, configure, first command, first result.",
+    "cta": "Subscribe + try",
+    "status": "",
+    "notes": "OBS record, Descript edit"
+  },
+  {
+    "day": "11",
+    "week": "W2",
+    "platform": "Twitter/X",
+    "content_type": "Meme / Visual",
+    "title": "\"Me explaining to my manager why I need an AI in my terminal\" \u2014 dev humor meme with Krud AI branding.",
+    "cta": "RT + engagement",
+    "status": "",
+    "notes": "Meme generator + brand overlay"
+  },
+  {
+    "day": "12",
+    "week": "W2",
+    "platform": "Dev.to",
+    "content_type": "Blog Post",
+    "title": "\"How Krud AI Handles Git Workflows Without Leaving the Terminal\" \u2014 deep-dive tutorial on one use case.",
+    "cta": "Traffic \u2192 GitHub",
+    "status": "",
+    "notes": "Claude: technical draft"
+  },
+  {
+    "day": "13",
+    "week": "W2",
+    "platform": "Twitter/X",
+    "content_type": "Poll",
+    "title": "\"What's your biggest terminal pain point?\" \u2014 4 options: file management, git, deployments, debugging. Follow-up with Krud AI solution.",
+    "cta": "Engagement + data",
+    "status": "",
+    "notes": "Use poll results for content"
+  },
+  {
+    "day": "14",
+    "week": "W2",
+    "platform": "LinkedIn",
+    "content_type": "Text Post",
+    "title": "\"I replaced 4 tools with one CLI command\" \u2014 storytelling post. Before/after workflow comparison.",
+    "cta": "Comments",
+    "status": "",
+    "notes": "AI rewrite for engagement"
+  },
+  {
+    "day": "15",
+    "week": "W3",
+    "platform": "Twitter/X",
+    "content_type": "Thread \ud83e\uddf5",
+    "title": "\"AI Agents \u2260 Chatbots. Here's the difference.\" \u2014 educate audience on agentic AI. Position Krud AI as an agent, not a wrapper.",
+    "cta": "Follow + bookmark",
+    "status": "",
+    "notes": "Research-backed thread"
+  },
+  {
+    "day": "16",
+    "week": "W3",
+    "platform": "LinkedIn",
+    "content_type": "Article",
+    "title": "\"Why Every Developer Will Have an AI Agent by 2027\" \u2014 long-form thought piece. Industry trends + Krud AI vision.",
+    "cta": "Newsletter signup",
+    "status": "",
+    "notes": "Claude: long-form draft"
+  },
+  {
+    "day": "17",
+    "week": "W3",
+    "platform": "YouTube Shorts",
+    "content_type": "Demo Video (45s)",
+    "title": "\"Krud AI vs manual: deploying to 3 environments\" \u2014 side-by-side split screen speed comparison.",
+    "cta": "Subscribe",
+    "status": "",
+    "notes": "Screen record both workflows"
+  },
+  {
+    "day": "18",
+    "week": "W3",
+    "platform": "Twitter/X",
+    "content_type": "Quote Tweet / Reply",
+    "title": "Engage with popular dev tool tweets. Add value, mention Krud AI naturally when relevant.",
+    "cta": "Visibility",
+    "status": "",
+    "notes": "Monitor trending dev topics"
+  },
+  {
+    "day": "19",
+    "week": "W3",
+    "platform": "Reddit",
+    "content_type": "Tutorial Post",
+    "title": "r/selfhosted or r/programming: \"How I use an AI CLI agent to manage my homelab\" \u2014 practical, genuine use case.",
+    "cta": "Upvotes + traffic",
+    "status": "",
+    "notes": "Write authentically, no hard sell"
+  },
+  {
+    "day": "20",
+    "week": "W3",
+    "platform": "Instagram Reels",
+    "content_type": "Behind-the-Scenes",
+    "title": "\"A day building Krud AI\" \u2014 raw footage of coding, debugging, shipping. Humanize the brand.",
+    "cta": "Follow + DMs",
+    "status": "",
+    "notes": "Phone camera, authentic vibe"
+  },
+  {
+    "day": "21",
+    "week": "W3",
+    "platform": "Twitter/X",
+    "content_type": "Infographic",
+    "title": "\"The AI Dev Tool Stack 2026\" \u2014 visual showing where CLI agents fit. Krud AI prominently featured.",
+    "cta": "Save + Share",
+    "status": "",
+    "notes": "Canva or Figma design"
+  },
+  {
+    "day": "22",
+    "week": "W4",
+    "platform": "Twitter/X",
+    "content_type": "Thread \ud83e\uddf5",
+    "title": "\"What I learned from 100 beta users of Krud AI\" \u2014 share real feedback, what you changed, what's next.",
+    "cta": "Trust + follow",
+    "status": "",
+    "notes": "Compile actual user quotes"
+  },
+  {
+    "day": "23",
+    "week": "W4",
+    "platform": "LinkedIn",
+    "content_type": "Text Post",
+    "title": "\"The hardest part of building a dev tool isn't the code \u2014 it's getting devs to try something new.\" \u2014 vulnerability post.",
+    "cta": "Engagement",
+    "status": "",
+    "notes": "Authentic storytelling"
+  },
+  {
+    "day": "24",
+    "week": "W4",
+    "platform": "YouTube",
+    "content_type": "Walkthrough (8 min)",
+    "title": "\"Building a Custom Krud AI Workflow for DevOps\" \u2014 advanced tutorial showing pipeline automation.",
+    "cta": "Subscribe + GitHub star",
+    "status": "",
+    "notes": "Plan script with Claude"
+  },
+  {
+    "day": "25",
+    "week": "W4",
+    "platform": "Twitter/X",
+    "content_type": "User Spotlight",
+    "title": "RT or quote a beta user's tweet about Krud AI. Add context and thank them publicly.",
+    "cta": "Social proof",
+    "status": "",
+    "notes": "Track mentions with alerts"
+  },
+  {
+    "day": "26",
+    "week": "W4",
+    "platform": "Discord / Slack",
+    "content_type": "Community Launch",
+    "title": "Launch Krud AI community server. Post welcome message, rules, first discussion prompt.",
+    "cta": "Join community",
+    "status": "",
+    "notes": "Set up channels, bot, welcome flow"
+  },
+  {
+    "day": "27",
+    "week": "W4",
+    "platform": "Dev.to",
+    "content_type": "Blog Post",
+    "title": "\"Open Source vs Closed Source AI Agents \u2014 Where Krud AI Stands\" \u2014 transparency post about your approach.",
+    "cta": "Blog traffic",
+    "status": "",
+    "notes": "Claude: outline"
+  },
+  {
+    "day": "28",
+    "week": "W4",
+    "platform": "Twitter/X",
+    "content_type": "Spaces / Audio",
+    "title": "Host a Twitter Space: \"The Future of CLI Tools\" \u2014 invite 2-3 dev tool founders for panel discussion.",
+    "cta": "Followers + authority",
+    "status": "",
+    "notes": "Prep questions in advance"
+  },
+  {
+    "day": "29",
+    "week": "W4",
+    "platform": "Instagram",
+    "content_type": "Carousel",
+    "title": "\"Month 1 Recap: Building Krud AI in Public\" \u2014 metrics, milestones, lessons, screenshots.",
+    "cta": "Save + Share",
+    "status": "",
+    "notes": "Canva + real data"
+  },
+  {
+    "day": "30",
+    "week": "W4",
+    "platform": "LinkedIn",
+    "content_type": "Video Post",
+    "title": "60-second selfie video: \"30 days of Krud AI \u2014 here's what I've learned\" \u2014 personal, direct to camera.",
+    "cta": "Engagement",
+    "status": "",
+    "notes": "Phone video, natural delivery"
+  },
+  {
+    "day": "31",
+    "week": "W5",
+    "platform": "Twitter/X",
+    "content_type": "Thread \ud83e\uddf5",
+    "title": "\"Krud AI vs [Popular Tool]: Honest Comparison\" \u2014 fair, factual comparison thread. Acknowledge where others win.",
+    "cta": "Follow + bookmark",
+    "status": "",
+    "notes": "Research competitor features"
+  },
+  {
+    "day": "32",
+    "week": "W5",
+    "platform": "LinkedIn",
+    "content_type": "Case Study Post",
+    "title": "\"How [User Name] Cut Deploy Time by 60% with Krud AI\" \u2014 real user story with before/after metrics.",
+    "cta": "DM for demo",
+    "status": "",
+    "notes": "Interview actual user"
+  },
+  {
+    "day": "33",
+    "week": "W5",
+    "platform": "YouTube",
+    "content_type": "Comparison Video (7 min)",
+    "title": "\"Krud AI vs Warp vs Fig \u2014 Which CLI Tool is Right for You?\" \u2014 honest review, feature matrix.",
+    "cta": "Subscribe",
+    "status": "",
+    "notes": "Record all 3 tools in action"
+  },
+  {
+    "day": "34",
+    "week": "W5",
+    "platform": "Twitter/X",
+    "content_type": "Single Tweet",
+    "title": "\"Unpopular opinion: Most AI dev tools are just fancy autocomplete. Krud AI is an actual agent.\" \u2014 spicy take.",
+    "cta": "Engagement",
+    "status": "",
+    "notes": "Track replies for content ideas"
+  },
+  {
+    "day": "35",
+    "week": "W5",
+    "platform": "Hacker News",
+    "content_type": "Show HN Post",
+    "title": "\"Show HN: Krud AI \u2014 An AI Agent That Lives in Your Terminal\" \u2014 launch on HN with clear description.",
+    "cta": "HN traffic + signups",
+    "status": "",
+    "notes": "Follow HN posting best practices"
+  },
+  {
+    "day": "36",
+    "week": "W5",
+    "platform": "Twitter/X",
+    "content_type": "Mini-Demo GIF",
+    "title": "Post a 15-second GIF showing Krud AI auto-fixing a failing test suite from terminal.",
+    "cta": "Retweets",
+    "status": "",
+    "notes": "asciinema or screen record \u2192 GIF"
+  },
+  {
+    "day": "37",
+    "week": "W5",
+    "platform": "LinkedIn",
+    "content_type": "Poll",
+    "title": "\"Which task would you automate first with an AI CLI agent?\" \u2014 4 options. Use results for product/content priorities.",
+    "cta": "Engagement + insights",
+    "status": "",
+    "notes": "Follow up with solution posts"
+  },
+  {
+    "day": "38",
+    "week": "W6",
+    "platform": "Dev.to / Blog",
+    "content_type": "Technical Deep-Dive",
+    "title": "\"How Krud AI's Agent Architecture Works Under the Hood\" \u2014 system design post. Show the agentic loop, tool calling, context window.",
+    "cta": "GitHub stars",
+    "status": "",
+    "notes": "Diagrams with Excalidraw"
+  },
+  {
+    "day": "39",
+    "week": "W6",
+    "platform": "Twitter/X",
+    "content_type": "Thread \ud83e\uddf5",
+    "title": "\"10 CLI aliases that become superpowers with Krud AI\" \u2014 practical thread devs can use immediately.",
+    "cta": "Follow + try it",
+    "status": "",
+    "notes": "Test each alias before posting"
+  },
+  {
+    "day": "40",
+    "week": "W6",
+    "platform": "YouTube",
+    "content_type": "Live Coding Stream",
+    "title": "\"Building a Feature for Krud AI \u2014 Live\" \u2014 30-min live stream showing real development. Take chat suggestions.",
+    "cta": "Subscribe + community",
+    "status": "",
+    "notes": "StreamYard or OBS"
+  },
+  {
+    "day": "41",
+    "week": "W6",
+    "platform": "Twitter/X",
+    "content_type": "Engagement Bait",
+    "title": "\"Name a repetitive dev task. I'll show how Krud AI automates it in one command.\" \u2014 reply-driven content.",
+    "cta": "Replies + followers",
+    "status": "",
+    "notes": "Reply with GIFs/screenshots"
+  },
+  {
+    "day": "42",
+    "week": "W6",
+    "platform": "LinkedIn",
+    "content_type": "Text Post",
+    "title": "\"The 3 types of developers who love Krud AI\" \u2014 persona-based post: DevOps, Full-Stack, Indie Hackers.",
+    "cta": "Tag relevant people",
+    "status": "",
+    "notes": "AI-generate persona descriptions"
+  },
+  {
+    "day": "43",
+    "week": "W6",
+    "platform": "Product Hunt",
+    "content_type": "Prep / Teaser",
+    "title": "Post a \"Coming Soon\" teaser on Product Hunt. Start collecting followers pre-launch.",
+    "cta": "PH followers",
+    "status": "",
+    "notes": "Design assets with Canva"
+  },
+  {
+    "day": "44",
+    "week": "W6",
+    "platform": "Twitter/X",
+    "content_type": "Thread \ud83e\uddf5",
+    "title": "\"How I use AI to write content about AI (meta thread)\" \u2014 share your content workflow using Krud AI + Claude.",
+    "cta": "Follow + RT",
+    "status": "",
+    "notes": "Actual workflow screenshots"
+  },
+  {
+    "day": "45",
+    "week": "W7",
+    "platform": "Twitter/X",
+    "content_type": "Collab Thread",
+    "title": "Co-create a thread with another dev tool founder: \"CLI Tools That Play Well Together\" \u2014 feature each other.",
+    "cta": "Cross-pollinate audiences",
+    "status": "",
+    "notes": "DM 3-5 founders"
+  },
+  {
+    "day": "46",
+    "week": "W7",
+    "platform": "LinkedIn",
+    "content_type": "Interview Post",
+    "title": "\"I asked 10 senior devs what they want from AI tools. Here's what they said.\" \u2014 survey results + Krud AI positioning.",
+    "cta": "Shares + comments",
+    "status": "",
+    "notes": "Actually survey people"
+  },
+  {
+    "day": "47",
+    "week": "W7",
+    "platform": "YouTube",
+    "content_type": "Guest Collab",
+    "title": "Appear on or host a dev-focused YouTube channel. Topic: \"AI Agents for Developers: Hype vs Reality\".",
+    "cta": "Subscribe cross-promo",
+    "status": "",
+    "notes": "Reach out 2 weeks early"
+  },
+  {
+    "day": "48",
+    "week": "W7",
+    "platform": "Twitter/X",
+    "content_type": "Testimonial Tweet",
+    "title": "Share a screenshot of a DM or email from a happy user (with permission). Add brief context.",
+    "cta": "Social proof",
+    "status": "",
+    "notes": "Ask users for permission"
+  },
+  {
+    "day": "49",
+    "week": "W7",
+    "platform": "Newsletter",
+    "content_type": "Launch Email Newsletter",
+    "title": "\"The Terminal\" \u2014 weekly newsletter on CLI productivity, AI dev tools, and Krud AI updates.",
+    "cta": "Email subscribers",
+    "status": "",
+    "notes": "Beehiiv or Substack setup"
+  },
+  {
+    "day": "50",
+    "week": "W7",
+    "platform": "Reddit",
+    "content_type": "Value Post",
+    "title": "r/ExperiencedDevs: \"Automating the boring parts of DevOps with AI \u2014 my setup\" \u2014 educational, link to Krud AI.",
+    "cta": "Traffic + credibility",
+    "status": "",
+    "notes": "Lead with value, not promo"
+  },
+  {
+    "day": "51",
+    "week": "W7",
+    "platform": "Instagram",
+    "content_type": "Reel",
+    "title": "\"POV: Your terminal just became sentient\" \u2014 trending audio + Krud AI demo overlay. Fun, shareable format.",
+    "cta": "Shares + follows",
+    "status": "",
+    "notes": "Trending audio + screen record"
+  },
+  {
+    "day": "52",
+    "week": "W8",
+    "platform": "Twitter/X",
+    "content_type": "Milestone Tweet",
+    "title": "\"1,000 GitHub stars \ud83c\udf89 \u2014 here's the story behind Krud AI\" (or whatever real milestone). Gratitude + next steps.",
+    "cta": "RT + celebration",
+    "status": "",
+    "notes": "Post at peak engagement time"
+  },
+  {
+    "day": "53",
+    "week": "W8",
+    "platform": "LinkedIn",
+    "content_type": "Carousel",
+    "title": "\"From 0 to 1,000 Users: Krud AI's Growth Playbook\" \u2014 transparent breakdown of what worked in marketing.",
+    "cta": "Save + Share",
+    "status": "",
+    "notes": "Real metrics, not vanity"
+  },
+  {
+    "day": "54",
+    "week": "W8",
+    "platform": "YouTube Shorts",
+    "content_type": "Quick Tip (45s)",
+    "title": "\"One Krud AI command that replaces 5 manual steps\" \u2014 quick, punchy, high-value short.",
+    "cta": "Subscribe",
+    "status": "",
+    "notes": "Script with Claude, record clean"
+  },
+  {
+    "day": "55",
+    "week": "W8",
+    "platform": "Twitter/X",
+    "content_type": "Thread \ud83e\uddf5",
+    "title": "\"5 mistakes I made building Krud AI (and what I'd do differently)\" \u2014 founder vulnerability thread.",
+    "cta": "Follow + empathy",
+    "status": "",
+    "notes": "Genuine reflection"
+  },
+  {
+    "day": "56",
+    "week": "W8",
+    "platform": "Dev.to",
+    "content_type": "Listicle",
+    "title": "\"7 AI CLI Tools Every Developer Should Know in 2026\" \u2014 include Krud AI naturally alongside competitors.",
+    "cta": "SEO traffic",
+    "status": "",
+    "notes": "Keyword research first"
+  },
+  {
+    "day": "57",
+    "week": "W8",
+    "platform": "Twitter/X",
+    "content_type": "Meme",
+    "title": "\"Devs who still copy-paste from Stack Overflow vs devs who use Krud AI\" \u2014 relatable meme format.",
+    "cta": "RT + saves",
+    "status": "",
+    "notes": "Trending meme template"
+  },
+  {
+    "day": "58",
+    "week": "W8",
+    "platform": "LinkedIn",
+    "content_type": "Text Post",
+    "title": "\"60 days building in public. Here's the uncomfortable truth about early-stage growth.\" \u2014 real talk post.",
+    "cta": "Comments + respect",
+    "status": "",
+    "notes": "Authentic, no sugarcoating"
+  },
+  {
+    "day": "59",
+    "week": "W8",
+    "platform": "Twitter/X",
+    "content_type": "Engagement",
+    "title": "Like/RT/Reply to every mention of Krud AI. Do a \"gratitude dump\" thanking early supporters by name.",
+    "cta": "Community love",
+    "status": "",
+    "notes": "Notification monitoring"
+  },
+  {
+    "day": "60",
+    "week": "W8",
+    "platform": "Instagram",
+    "content_type": "Story Series",
+    "title": "\"Month 2 Recap\" \u2014 10-story series with polls, questions, metrics, behind-the-scenes.",
+    "cta": "Replies + DMs",
+    "status": "",
+    "notes": "Canva story templates"
+  },
+  {
+    "day": "61",
+    "week": "W9",
+    "platform": "Product Hunt",
+    "content_type": "Full Launch",
+    "title": "Product Hunt launch day! Pre-schedule all social posts. Maker comment ready. Activate community for upvotes.",
+    "cta": "PH upvotes + signups",
+    "status": "",
+    "notes": "Prep 1 week before launch"
+  },
+  {
+    "day": "62",
+    "week": "W9",
+    "platform": "Twitter/X",
+    "content_type": "Launch Thread \ud83e\uddf5",
+    "title": "\"Today we're launching Krud AI on Product Hunt \ud83d\ude80\" \u2014 the story, the product, the ask. Tag supporters.",
+    "cta": "PH upvotes + follows",
+    "status": "",
+    "notes": "Schedule for 12:01 AM PST"
+  },
+  {
+    "day": "63",
+    "week": "W9",
+    "platform": "LinkedIn",
+    "content_type": "Launch Post",
+    "title": "\"We just launched Krud AI on Product Hunt\" \u2014 professional announcement with founder selfie + laptop.",
+    "cta": "PH traffic + shares",
+    "status": "",
+    "notes": "Personal photo > stock image"
+  },
+  {
+    "day": "64",
+    "week": "W9",
+    "platform": "Reddit",
+    "content_type": "Launch Post",
+    "title": "Cross-post launch in relevant subs: r/SideProject, r/startups, r/devtools \u2014 tailored message for each.",
+    "cta": "Traffic diversification",
+    "status": "",
+    "notes": "Follow each sub's rules"
+  },
+  {
+    "day": "65",
+    "week": "W9",
+    "platform": "YouTube",
+    "content_type": "Launch Video (3 min)",
+    "title": "\"Krud AI is Live \u2014 Here's What It Does\" \u2014 polished but authentic launch video. Demo + vision.",
+    "cta": "Subscribe + try",
+    "status": "",
+    "notes": "Edit tight, add captions"
+  },
+  {
+    "day": "66",
+    "week": "W9",
+    "platform": "Email Newsletter",
+    "content_type": "Launch Email",
+    "title": "Send launch announcement to all newsletter subscribers. Exclusive early-bird pricing or feature.",
+    "cta": "Conversions",
+    "status": "",
+    "notes": "Segment list, personalize"
+  },
+  {
+    "day": "67",
+    "week": "W9",
+    "platform": "Twitter/X",
+    "content_type": "Thank You Thread",
+    "title": "End of launch day: \"We hit #X on Product Hunt! Thank you\" \u2014 genuine gratitude + next steps.",
+    "cta": "Goodwill + followers",
+    "status": "",
+    "notes": "Include real metrics"
+  },
+  {
+    "day": "68",
+    "week": "W10",
+    "platform": "Twitter/X",
+    "content_type": "Thread \ud83e\uddf5",
+    "title": "\"Why Krud AI is worth paying for\" \u2014 transparent pricing thread. What you get, what it costs, why it's fair.",
+    "cta": "Conversions",
+    "status": "",
+    "notes": "Address objections directly"
+  },
+  {
+    "day": "69",
+    "week": "W10",
+    "platform": "LinkedIn",
+    "content_type": "ROI Post",
+    "title": "\"Krud AI saves the average dev 5 hours/week. Here's the math.\" \u2014 ROI calculation with real usage data.",
+    "cta": "DM for trial",
+    "status": "",
+    "notes": "Use actual user metrics"
+  },
+  {
+    "day": "70",
+    "week": "W10",
+    "platform": "YouTube",
+    "content_type": "\"Pro Tips\" Video (6 min)",
+    "title": "\"5 Advanced Krud AI Workflows You're Not Using\" \u2014 power-user content that shows product depth.",
+    "cta": "Subscribe + upgrade",
+    "status": "",
+    "notes": "Screen record advanced features"
+  },
+  {
+    "day": "71",
+    "week": "W10",
+    "platform": "Twitter/X",
+    "content_type": "User-Generated Content",
+    "title": "RT and quote 3 user posts about Krud AI. Build a \"wall of love\" thread.",
+    "cta": "Social proof",
+    "status": "",
+    "notes": "Curate best testimonials"
+  },
+  {
+    "day": "72",
+    "week": "W10",
+    "platform": "Dev.to",
+    "content_type": "Integration Guide",
+    "title": "\"Using Krud AI with Docker, K8s, and CI/CD Pipelines\" \u2014 integration tutorial for DevOps engineers.",
+    "cta": "Signups from SEO",
+    "status": "",
+    "notes": "Claude: technical writing"
+  },
+  {
+    "day": "73",
+    "week": "W10",
+    "platform": "Twitter/X",
+    "content_type": "Limited Offer",
+    "title": "\"First 100 annual subscribers get lifetime early-bird pricing\" \u2014 scarcity + urgency tweet.",
+    "cta": "Conversions",
+    "status": "",
+    "notes": "Track with unique link"
+  },
+  {
+    "day": "74",
+    "week": "W10",
+    "platform": "LinkedIn",
+    "content_type": "Text Post",
+    "title": "\"We just closed our first paying enterprise customer\" \u2014 milestone post (when it happens). What it means.",
+    "cta": "Credibility + DMs",
+    "status": "",
+    "notes": "Real story, anonymize if needed"
+  },
+  {
+    "day": "75",
+    "week": "W11",
+    "platform": "Twitter/X",
+    "content_type": "Thread \ud83e\uddf5",
+    "title": "\"The Krud AI content engine: how I post daily using AI\" \u2014 meta content about your content system.",
+    "cta": "Follow + save",
+    "status": "",
+    "notes": "Show your actual workflow"
+  },
+  {
+    "day": "76",
+    "week": "W11",
+    "platform": "LinkedIn",
+    "content_type": "Carousel",
+    "title": "\"Krud AI Roadmap 2026\" \u2014 visual roadmap showing upcoming features. Let users vote in comments.",
+    "cta": "Engagement + retention",
+    "status": "",
+    "notes": "Figma or Canva design"
+  },
+  {
+    "day": "77",
+    "week": "W11",
+    "platform": "YouTube",
+    "content_type": "User Interview (10 min)",
+    "title": "Interview a power user on camera: how they use Krud AI daily, what changed in their workflow.",
+    "cta": "Subscribe + convert",
+    "status": "",
+    "notes": "Prep 5 questions, let them talk"
+  },
+  {
+    "day": "78",
+    "week": "W11",
+    "platform": "Twitter/X",
+    "content_type": "Tip of the Day",
+    "title": "Start a \"Krud AI Tip of the Day\" series. One CLI command + result. Repeatable, low-effort, high-value.",
+    "cta": "Daily engagement",
+    "status": "",
+    "notes": "Batch-create 7 tips at once"
+  },
+  {
+    "day": "79",
+    "week": "W11",
+    "platform": "Newsletter",
+    "content_type": "Deep-Dive Email",
+    "title": "\"How Krud AI Actually Works\" \u2014 technical newsletter explaining the agent loop, LLM integration, tool calling.",
+    "cta": "Retention + trust",
+    "status": "",
+    "notes": "Diagrams + code snippets"
+  },
+  {
+    "day": "80",
+    "week": "W11",
+    "platform": "Reddit",
+    "content_type": "AMA Post",
+    "title": "Host an AMA in r/startups or r/devtools: \"I built an AI CLI agent \u2014 AMA about the tech, business, and failures.\"",
+    "cta": "Credibility + traffic",
+    "status": "",
+    "notes": "Schedule 1 hour, answer everything"
+  },
+  {
+    "day": "81",
+    "week": "W11",
+    "platform": "Instagram",
+    "content_type": "Reel",
+    "title": "\"Things devs say when they first try Krud AI\" \u2014 comedy reel with relatable reactions.",
+    "cta": "Shares + follows",
+    "status": "",
+    "notes": "Script 5 reactions, film quick"
+  },
+  {
+    "day": "82",
+    "week": "W12",
+    "platform": "Twitter/X",
+    "content_type": "Thread \ud83e\uddf5",
+    "title": "\"90 days of building Krud AI in public \u2014 full recap\" \u2014 metrics, content performance, biggest wins, worst flops.",
+    "cta": "Mega follow + saves",
+    "status": "",
+    "notes": "Pull analytics from all platforms"
+  },
+  {
+    "day": "83",
+    "week": "W12",
+    "platform": "LinkedIn",
+    "content_type": "Article",
+    "title": "\"What 90 Days of Content Marketing Taught Me About Selling Dev Tools\" \u2014 long-form lessons for founders.",
+    "cta": "Authority + shares",
+    "status": "",
+    "notes": "Claude: long-form editing"
+  },
+  {
+    "day": "84",
+    "week": "W12",
+    "platform": "YouTube",
+    "content_type": "90-Day Recap (10 min)",
+    "title": "\"3 Months of Krud AI: The Numbers, The Lessons, The Plan\" \u2014 transparent video with real dashboards.",
+    "cta": "Subscribe + trust",
+    "status": "",
+    "notes": "Screen share actual analytics"
+  },
+  {
+    "day": "85",
+    "week": "W12",
+    "platform": "Twitter/X",
+    "content_type": "Poll",
+    "title": "\"What should I build next for Krud AI?\" \u2014 4 feature options. Use results for Q2 roadmap.",
+    "cta": "Engagement + data",
+    "status": "",
+    "notes": "Features your users actually want"
+  },
+  {
+    "day": "86",
+    "week": "W12",
+    "platform": "Dev.to",
+    "content_type": "Blog Post",
+    "title": "\"The Developer's Guide to Krud AI in 2026\" \u2014 comprehensive, evergreen guide. SEO-optimized.",
+    "cta": "Long-term SEO traffic",
+    "status": "",
+    "notes": "Keyword research + Claude draft"
+  },
+  {
+    "day": "87",
+    "week": "W12",
+    "platform": "Email Newsletter",
+    "content_type": "Milestone Email",
+    "title": "\"We did it \u2014 90 days, X users, X stars\" \u2014 celebration email with exclusive discount for loyal subscribers.",
+    "cta": "Retention + conversions",
+    "status": "",
+    "notes": "Personalize with user data"
+  },
+  {
+    "day": "88",
+    "week": "W12",
+    "platform": "Twitter/X",
+    "content_type": "Gratitude Thread",
+    "title": "\"Shoutout to everyone who made Krud AI's first 90 days possible\" \u2014 tag users, contributors, supporters.",
+    "cta": "Community love",
+    "status": "",
+    "notes": "Make people feel seen"
+  },
+  {
+    "day": "89",
+    "week": "W12",
+    "platform": "LinkedIn",
+    "content_type": "Video",
+    "title": "\"What's next for Krud AI\" \u2014 founder video on Q2 plans, new features, hiring, and growth goals.",
+    "cta": "Hype + engagement",
+    "status": "",
+    "notes": "Phone video, genuine excitement"
+  },
+  {
+    "day": "90",
+    "week": "W12",
+    "platform": "All Platforms",
+    "content_type": "Announcement",
+    "title": "\"Krud AI Q2 Launch: [Big Feature]\" \u2014 tease the next big thing across all channels simultaneously.",
+    "cta": "All funnels active",
+    "status": "",
+    "notes": "Coordinate cross-platform drop"
+  }
+]
