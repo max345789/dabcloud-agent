@@ -1,1 +1,8 @@
 config/settings.json
+node_modules/
+*.log
+logs/
+posted/
+generated/
+.DS_Store
+{content,logs,posted,config}
