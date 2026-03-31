@@ -1,0 +1,16 @@
+services:
+  - type: cron
+    name: dabcloud-autonomous-agent
+    runtime: node
+    schedule: "30 2,6,12 * * *"   # 8:00, 12:00, 18:00 IST (UTC+5:30)
+    buildCommand: npm install
+    startCommand: node autonomous.js --force
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: LINKEDIN_ACCESS_TOKEN
+        sync: false
+      - key: LINKEDIN_PERSON_URN
+        sync: false
+      - key: LINKEDIN_ENABLED
+        value: "true"

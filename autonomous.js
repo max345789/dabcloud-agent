@@ -4,7 +4,23 @@ import { fileURLToPath } from "url";
 import OpenAI from "openai";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const config = JSON.parse(readFileSync(join(__dirname, "config/settings.json"), "utf-8"));
+
+// Load config from file or fall back to environment variables (for Render/CI deployment)
+const configPath = join(__dirname, "config/settings.json");
+const config = existsSync(configPath)
+  ? JSON.parse(readFileSync(configPath, "utf-8"))
+  : {
+      openai_api_key: process.env.OPENAI_API_KEY,
+      post_times: ["08:00", "12:00", "18:00"],
+      platforms: {
+        linkedin: {
+          enabled: process.env.LINKEDIN_ENABLED !== "false",
+          access_token: process.env.LINKEDIN_ACCESS_TOKEN,
+          person_urn: process.env.LINKEDIN_PERSON_URN,
+        },
+      },
+    };
+
 const client = new OpenAI({ apiKey: config.openai_api_key });
 
 if (!existsSync(join(__dirname, "logs"))) mkdirSync(join(__dirname, "logs"));
