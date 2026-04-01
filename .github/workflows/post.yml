@@ -14,6 +14,17 @@ jobs:
         with:
           node-version: '22'
       - run: npm install
+      - name: Test OpenAI connectivity
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          echo "Testing OpenAI API connectivity..."
+          STATUS=$(curl -s -o /tmp/oai_resp.txt -w "%{http_code}" \
+            -H "Authorization: Bearer $OPENAI_API_KEY" \
+            -H "Content-Type: application/json" \
+            https://api.openai.com/v1/models)
+          echo "HTTP status: $STATUS"
+          cat /tmp/oai_resp.txt | head -c 200
       - name: Run plan agent
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
