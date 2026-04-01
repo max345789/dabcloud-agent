@@ -2,7 +2,7 @@
  * DabCloud Plan Agent
  * Posts to LinkedIn and Instagram according to the 90-day content plan.
  * Calculates today's plan day from PLAN_START_DATE, looks up the scheduled
- * entry, generates the full post with GPT-4o, and publishes it.
+ * entry, generates content + DALL-E 3 image with GPT-4o, and publishes it.
  */
 
 import { readFileSync, appendFileSync, existsSync, mkdirSync } from "fs";
@@ -84,7 +84,12 @@ function markPosted(day, title, platform) {
 
 // ─── Generate LinkedIn post ───────────────────────────────────────────────────
 async function generateLinkedInPost(entry) {
-  const prompt = `You are a LinkedIn content expert writing for Krud AI (krud.ai) — an AI CLI agent for developers.
+  const res = await client.chat.completions.create({
+    model: "gpt-4o",
+    max_tokens: 1024,
+    messages: [{
+      role: "user",
+      content: `You are a LinkedIn content expert writing for Krud AI (krud.ai) — an AI CLI agent for developers.
 
 Write a LinkedIn post based on this planned content:
 - Topic / Title: ${entry.title}
@@ -102,19 +107,20 @@ Rules:
 - Max 1500 characters
 - Sound like a real developer / founder, not a marketer
 
-Output ONLY the post text.`;
-
-  const res = await client.chat.completions.create({
-    model: "gpt-4o",
-    max_tokens: 1024,
-    messages: [{ role: "user", content: prompt }],
+Output ONLY the post text.`
+    }],
   });
   return res.choices[0].message.content.trim();
 }
 
 // ─── Generate Instagram caption ───────────────────────────────────────────────
 async function generateInstagramCaption(entry) {
-  const prompt = `You are an Instagram content expert writing for Krud AI (krud.ai) — an AI CLI agent for developers.
+  const res = await client.chat.completions.create({
+    model: "gpt-4o",
+    max_tokens: 1024,
+    messages: [{
+      role: "user",
+      content: `You are an Instagram content expert writing for Krud AI (krud.ai) — an AI CLI agent for developers.
 
 Write an Instagram caption based on this planned content:
 - Topic / Title: ${entry.title}
@@ -123,23 +129,62 @@ Write an Instagram caption based on this planned content:
 - Week: ${entry.week} of the 90-day content plan
 
 Rules:
-- Start with a punchy hook (1 line, no hashtags yet)
-- Short sentences, emoji-friendly but not overdone
-- 2–4 key points
+- Start with a punchy hook (1–2 lines)
+- Use emojis naturally, not excessively
+- 3–5 short punchy points
 - Mention Krud AI naturally
-- End with a question or clear CTA
-- Add 5–10 relevant hashtags at the very end
+- End with a clear CTA or question
+- Add 8–12 relevant hashtags at the very end
 - Max 2000 characters
-- Sound genuine, not corporate
+- Sound like a real founder/dev, not a brand account
 
-Output ONLY the caption text.`;
-
-  const res = await client.chat.completions.create({
-    model: "gpt-4o",
-    max_tokens: 1024,
-    messages: [{ role: "user", content: prompt }],
+Output ONLY the caption text.`
+    }],
   });
   return res.choices[0].message.content.trim();
+}
+
+// ─── Generate Instagram image with DALL-E 3 ──────────────────────────────────
+async function generateInstagramImage(entry, caption) {
+  // First, ask GPT-4o to write an optimised DALL-E prompt for this post
+  const promptRes = await client.chat.completions.create({
+    model: "gpt-4o",
+    max_tokens: 300,
+    messages: [{
+      role: "user",
+      content: `Create a DALL-E 3 image prompt for an Instagram post about:
+Topic: ${entry.title}
+Content type: ${entry.content_type}
+Brand: Krud AI — a dark-themed, minimal AI CLI tool for developers
+
+Requirements:
+- Square 1:1 composition
+- Dark background (#0d0d0d or similar)
+- Modern, clean tech aesthetic
+- Bold typography area (leave space for text overlay if needed)
+- No people, no stock-photo feel
+- Should look native on a developer/tech Instagram feed
+- Style: minimal, high-contrast, cinematic
+
+Output ONLY the DALL-E prompt (no explanation).`
+    }],
+  });
+
+  const imagePrompt = promptRes.choices[0].message.content.trim();
+  log("INFO ", `Image prompt: ${imagePrompt.substring(0, 100)}...`);
+
+  // Generate image with DALL-E 3
+  const imageRes = await client.images.generate({
+    model: "dall-e-3",
+    prompt: imagePrompt,
+    n: 1,
+    size: "1024x1024",
+    quality: "standard",
+  });
+
+  const imageUrl = imageRes.data[0].url;
+  log("OK   ", `Image generated: ${imageUrl.substring(0, 60)}...`);
+  return imageUrl;
 }
 
 // ─── Post to LinkedIn ─────────────────────────────────────────────────────────
@@ -168,56 +213,53 @@ async function postToLinkedIn(text) {
   return await res.json();
 }
 
-// ─── Post to Instagram ────────────────────────────────────────────────────────
-async function postToInstagram(caption) {
+// ─── Post to Instagram (image + caption) ─────────────────────────────────────
+async function postToInstagram(imageUrl, caption) {
   const { access_token, user_id } = config.platforms.instagram;
 
-  // Step 1: Create media container (text-only carousel/feed post)
+  // Step 1: Create media container with DALL-E image URL
   const containerRes = await fetch(
     `https://graph.facebook.com/v25.0/${user_id}/media`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        image_url: imageUrl,
         caption,
-        media_type: "REELS",
-        // For a caption-only post we use a placeholder — Instagram requires media.
-        // We'll use image_url with a plain white image for text posts.
-        // If you want to skip media, use the threads API instead.
         access_token,
       }),
     }
   );
 
-  if (!containerRes.ok) {
-    const errText = await containerRes.text();
-    throw new Error(`Instagram container creation failed: ${containerRes.status} — ${errText}`);
+  const containerData = await containerRes.json();
+  if (!containerRes.ok || !containerData.id) {
+    throw new Error(`Instagram container failed: ${JSON.stringify(containerData)}`);
   }
 
-  const container = await containerRes.json();
+  log("INFO ", `Instagram container created: ${containerData.id}`);
 
-  if (!container.id) {
-    throw new Error(`Instagram container has no ID: ${JSON.stringify(container)}`);
-  }
+  // Step 2: Wait a moment for Instagram to process the image
+  await new Promise((r) => setTimeout(r, 5000));
 
-  // Step 2: Publish the container
+  // Step 3: Publish the container
   const publishRes = await fetch(
     `https://graph.facebook.com/v25.0/${user_id}/media_publish`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        creation_id: container.id,
+        creation_id: containerData.id,
         access_token,
       }),
     }
   );
 
+  const publishData = await publishRes.json();
   if (!publishRes.ok) {
-    throw new Error(`Instagram publish failed: ${publishRes.status} — ${await publishRes.text()}`);
+    throw new Error(`Instagram publish failed: ${JSON.stringify(publishData)}`);
   }
 
-  return await publishRes.json();
+  return publishData;
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
@@ -264,19 +306,22 @@ async function run() {
       if (!process.argv.includes("--force") && isAlreadyPosted(day, "instagram")) {
         log("INFO ", `Day ${day} Instagram already posted. Skipping.`);
       } else {
-        log("INFO ", "Generating Instagram caption...");
-        const caption = await generateInstagramCaption(entry);
-        log("OK   ", `Generated (${caption.length} chars)`);
-
-        log("INFO ", "Posting to Instagram...");
         try {
-          await postToInstagram(caption);
+          log("INFO ", "Generating Instagram caption...");
+          const caption = await generateInstagramCaption(entry);
+          log("OK   ", `Caption generated (${caption.length} chars)`);
+
+          log("INFO ", "Generating Instagram image with DALL-E 3...");
+          const imageUrl = await generateInstagramImage(entry, caption);
+
+          log("INFO ", "Posting to Instagram...");
+          await postToInstagram(imageUrl, caption);
           log("OK   ", "Posted to Instagram!");
           markPosted(day, entry.title, "instagram");
 
           appendFileSync(
             join(__dirname, "posted", `plan-day-${String(day).padStart(2, "0")}-instagram.txt`),
-            `${"=".repeat(50)}\n${new Date().toISOString()}\nDAY: ${day} | ${entry.week}\nTOPIC: ${entry.title}\nTYPE: ${entry.content_type}\nCTA: ${entry.cta}\n\n${caption}\n`
+            `${"=".repeat(50)}\n${new Date().toISOString()}\nDAY: ${day} | ${entry.week}\nTOPIC: ${entry.title}\nTYPE: ${entry.content_type}\nCTA: ${entry.cta}\nIMAGE: ${imageUrl}\n\n${caption}\n`
           );
         } catch (igErr) {
           log("WARN ", `Instagram post failed (skipping): ${igErr.message}`);
