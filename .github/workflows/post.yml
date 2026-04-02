@@ -5,6 +5,11 @@ on:
     - cron: '30 6 * * *'   # 12:00 IST
     - cron: '30 12 * * *'  # 18:00 IST
   workflow_dispatch:
+    inputs:
+      day:
+        description: 'Override plan day (e.g. 2 for LinkedIn, 7 for Instagram)'
+        required: false
+        default: ''
 jobs:
   post:
     runs-on: ubuntu-latest
@@ -22,4 +27,9 @@ jobs:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
           INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
           PLAN_START_DATE: ${{ secrets.PLAN_START_DATE }}
-        run: node plan-agent.js --force
+        run: |
+          DAY_ARG=""
+          if [ -n "${{ github.event.inputs.day }}" ]; then
+            DAY_ARG="--day=${{ github.event.inputs.day }}"
+          fi
+          node plan-agent.js --force $DAY_ARG

@@ -9,30 +9,14 @@ import { readFileSync, appendFileSync, existsSync, mkdirSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import OpenAI from "openai";
+import { loadConfig, platformHasCredentials } from "./config.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const config = loadConfig();
 
-// ─── Config ──────────────────────────────────────────────────────────────────
-const configPath = join(__dirname, "config/settings.json");
-const config = existsSync(configPath)
-  ? JSON.parse(readFileSync(configPath, "utf-8"))
-  : {
-      openai_api_key: process.env.OPENAI_API_KEY,
-      platforms: {
-        linkedin: {
-          enabled: process.env.LINKEDIN_ENABLED !== "false",
-          access_token: process.env.LINKEDIN_ACCESS_TOKEN,
-          person_urn: process.env.LINKEDIN_PERSON_URN,
-        },
-        instagram: {
-          enabled: process.env.INSTAGRAM_ENABLED !== "false",
-          access_token: process.env.INSTAGRAM_ACCESS_TOKEN,
-          user_id: process.env.INSTAGRAM_USER_ID,
-        },
-      },
-    };
-
-const client = new OpenAI({ apiKey: config.openai_api_key });
+function getClient() {
+  return new OpenAI({ apiKey: config.openai_api_key });
+}
 
 // ─── Dirs ─────────────────────────────────────────────────────────────────────
 if (!existsSync(join(__dirname, "logs"))) mkdirSync(join(__dirname, "logs"));
@@ -84,6 +68,7 @@ function markPosted(day, title, platform) {
 
 // ─── Generate LinkedIn post ───────────────────────────────────────────────────
 async function generateLinkedInPost(entry) {
+  const client = getClient();
   const res = await client.chat.completions.create({
     model: "gpt-4o",
     max_tokens: 1024,
@@ -115,6 +100,7 @@ Output ONLY the post text.`
 
 // ─── Generate Instagram caption ───────────────────────────────────────────────
 async function generateInstagramCaption(entry) {
+  const client = getClient();
   const res = await client.chat.completions.create({
     model: "gpt-4o",
     max_tokens: 1024,
@@ -146,6 +132,7 @@ Output ONLY the caption text.`
 
 // ─── Generate Instagram image with DALL-E 3 ──────────────────────────────────
 async function generateInstagramImage(entry, caption) {
+  const client = getClient();
   // First, ask GPT-4o to write an optimised DALL-E prompt for this post
   const promptRes = await client.chat.completions.create({
     model: "gpt-4o",
@@ -266,8 +253,14 @@ async function postToInstagram(imageUrl, caption) {
 async function run() {
   log("INFO ", "DabCloud Plan Agent started");
 
+  if (!config.openai_api_key) {
+    log("ERROR", "Missing OpenAI API key. Set OPENAI_API_KEY or config/settings.json.");
+    return;
+  }
+
   const plan = loadPlan();
-  const day = getPlanDay();
+  const dayArg = process.argv.find(a => a.startsWith('--day='));
+  const day = dayArg ? parseInt(dayArg.split('=')[1]) : getPlanDay();
   log("INFO ", `Today is Plan Day ${day} of 90`);
 
   const entries = getTodayEntries(plan, day);
@@ -282,6 +275,10 @@ async function run() {
 
     // ── LinkedIn ──────────────────────────────────────────────────────────
     if (platform.includes("LinkedIn") && config.platforms?.linkedin?.enabled) {
+      if (!platformHasCredentials("linkedin", config.platforms.linkedin)) {
+        log("ERROR", "LinkedIn is enabled but missing credentials. Skipping.");
+        continue;
+      }
       if (!process.argv.includes("--force") && isAlreadyPosted(day, "linkedin")) {
         log("INFO ", `Day ${day} LinkedIn already posted. Skipping.`);
       } else {
@@ -303,6 +300,10 @@ async function run() {
 
     // ── Instagram ─────────────────────────────────────────────────────────
     if (platform.includes("Instagram") && config.platforms?.instagram?.enabled) {
+      if (!platformHasCredentials("instagram", config.platforms.instagram)) {
+        log("ERROR", "Instagram is enabled but missing credentials. Skipping.");
+        continue;
+      }
       if (!process.argv.includes("--force") && isAlreadyPosted(day, "instagram")) {
         log("INFO ", `Day ${day} Instagram already posted. Skipping.`);
       } else {
