@@ -106,23 +106,24 @@ async function generateInstagramCaption(entry) {
     max_tokens: 1024,
     messages: [{
       role: "user",
-      content: `You are an Instagram content expert writing for Krud AI (krud.ai) — an AI CLI agent for developers.
+      content: `You are an expert Instagram SEO strategist and copywriter for Krud AI (krud.ai) — an AI CLI agent for developers.
 
-Write an Instagram caption based on this planned content:
+Write a high-performing Instagram caption optimised for reach, saves, and SEO discoverability:
 - Topic / Title: ${entry.title}
 - Content Type: ${entry.content_type}
 - CTA Goal: ${entry.cta}
 - Week: ${entry.week} of the 90-day content plan
 
 Rules:
-- Start with a punchy hook (1–2 lines)
-- Use emojis naturally, not excessively
-- 3–5 short punchy points
-- Mention Krud AI naturally
-- End with a clear CTA or question
-- Add 8–12 relevant hashtags at the very end
-- Max 2000 characters
-- Sound like a real founder/dev, not a brand account
+- First line: scroll-stopping hook under 125 characters (this shows before "more")
+- Use line breaks generously for readability
+- 3–5 punchy insight lines — each should be saveable / shareable on its own
+- Naturally weave in keywords developers search for (e.g. "AI developer tools", "CLI productivity", "terminal workflow")
+- Mention Krud AI once, naturally — link in bio mention at end
+- Strong CTA: question or "save this" / "share with your team"
+- 15–20 hashtags at the very end — mix of high-volume (#developertools #coding), mid (#CLItool #AItools), and niche (#terminaldev #krudai)
+- Max 2000 characters total
+- Voice: sharp, confident founder — not corporate, not hype
 
 Output ONLY the caption text.`
     }],
@@ -139,19 +140,21 @@ async function generateInstagramImage(entry, caption) {
     max_tokens: 300,
     messages: [{
       role: "user",
-      content: `Create a DALL-E 3 image prompt for an Instagram post about:
+      content: `Create a DALL-E 3 image prompt for a premium editorial Instagram post about:
 Topic: ${entry.title}
 Content type: ${entry.content_type}
-Brand: Krud AI — a dark-themed, minimal AI CLI tool for developers
+Brand: Krud AI — a clean, modern AI CLI tool for developers
 
-Requirements:
+Visual direction (study brands like The Core Newsletter, Linear, Vercel, Stripe):
 - Square 1:1 composition
-- Dark background (#0d0d0d or similar)
-- Modern, clean tech aesthetic
-- Bold typography area (leave space for text overlay if needed)
-- No people, no stock-photo feel
-- Should look native on a developer/tech Instagram feed
-- Style: minimal, high-contrast, cinematic
+- WHITE or very light background (#ffffff or #f5f5f5) — absolutely no dark backgrounds
+- Clean sans-serif typography as the hero element — bold statement text, not decorative
+- Minimal geometric shapes or abstract line art — think editorial magazine, not sci-fi
+- Generous white space — the design breathes
+- One strong accent color (electric blue, coral, or lime green) for a single focal element
+- No AI robot heads, no collages, no cluttered panels, no neon glows
+- No people, no photos — pure graphic design
+- Style: modern editorial, design-forward, clean — like a premium newsletter cover
 
 Output ONLY the DALL-E prompt (no explanation).`
     }],
