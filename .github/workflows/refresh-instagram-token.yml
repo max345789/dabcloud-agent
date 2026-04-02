@@ -14,7 +14,7 @@ jobs:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
           INSTAGRAM_APP_ID: ${{ secrets.INSTAGRAM_APP_ID }}
           INSTAGRAM_APP_SECRET: ${{ secrets.INSTAGRAM_APP_SECRET }}
-          GH_PAT: ${{ secrets.GH_PAT_SECRETS }}
+          GH_TOKEN: ${{ secrets.GH_PAT_SECRETS }}
           GH_REPO: ${{ github.repository }}
         run: |
           echo "Refreshing Instagram long-lived token..."
@@ -37,10 +37,9 @@ jobs:
 
           echo "Token refreshed successfully."
 
-          # Update GitHub secret
+          # Update GitHub secret (GH_TOKEN env var authenticates gh CLI automatically)
           gh secret set INSTAGRAM_ACCESS_TOKEN \
             --body "$NEW_TOKEN" \
-            --repo "$GH_REPO" \
-            --token "$GH_PAT"
+            --repo "$GH_REPO"
 
           echo "GitHub secret INSTAGRAM_ACCESS_TOKEN updated."
