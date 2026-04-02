@@ -145,17 +145,18 @@ Topic: ${entry.title}
 Content type: ${entry.content_type}
 Brand: Krud AI — a clean, modern AI CLI tool for developers
 
-Visual direction (study brands like The Core Newsletter, Linear, Vercel, Stripe):
+STRICT visual rules — follow exactly:
 - Square 1:1 composition
-- WHITE or very light background (#ffffff or #f5f5f5) — absolutely no dark backgrounds
-- Clean sans-serif typography as the hero element — bold statement text, not decorative
-- Minimal geometric shapes or abstract line art — think editorial magazine, not sci-fi
-- Generous white space — the design breathes
-- One strong accent color (electric blue, coral, or lime green) for a single focal element
-- No AI robot heads, no collages, no cluttered panels, no neon glows
-- No people, no photos — pure graphic design
-- Style: modern editorial, design-forward, clean — like a premium newsletter cover
+- Pure WHITE background (#ffffff) — no dark backgrounds, no grey, no gradients
+- SINGLE hero illustration or abstract shape — one object, centred, with massive white space around it
+- The illustration should be a simple, clean 2D flat graphic: think one terminal window, one geometric shape, one minimal icon — not a collage, not a scene
+- ONE accent color only (coral #FF6B6B, electric blue #0066FF, or lime #A8FF3E) — used sparingly on that single element
+- ABSOLUTELY NO TEXT, NO WORDS, NO LETTERS anywhere in the image — DALL-E cannot render text correctly, so include zero typography
+- NO panels, NO grids, NO multi-panel layouts, NO split compositions
+- NO robots, NO AI heads, NO people, NO 3D renders, NO neon glows, NO dark elements
+- Style reference: flat design illustration for a premium SaaS brand — like Notion, Linear, or Stripe's marketing art
 
+Describe ONLY the single central illustration element and its colors. Keep the prompt under 80 words.
 Output ONLY the DALL-E prompt (no explanation).`
     }],
   });
