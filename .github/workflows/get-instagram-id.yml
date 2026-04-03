@@ -11,9 +11,17 @@ jobs:
         env:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
         run: |
-          echo "=== Querying /me/accounts ==="
-          curl -s "https://graph.facebook.com/v25.0/me/accounts?fields=id,name,instagram_business_account{id,name,username}&access_token=${INSTAGRAM_ACCESS_TOKEN}" | python3 -m json.tool
+          echo "=== Querying /me directly ==="
+          curl -s "https://graph.facebook.com/v25.0/me?fields=id,name&access_token=${INSTAGRAM_ACCESS_TOKEN}"
 
           echo ""
-          echo "=== Querying /me directly ==="
-          curl -s "https://graph.facebook.com/v25.0/me?fields=id,name&access_token=${INSTAGRAM_ACCESS_TOKEN}" | python3 -m json.tool
+          echo "=== Querying /me/accounts ==="
+          curl -s 'https://graph.facebook.com/v25.0/me/accounts?fields=id,name,instagram_business_account' \
+            --data-urlencode '' \
+            -G \
+            --data-urlencode "access_token=${INSTAGRAM_ACCESS_TOKEN}"
+
+          echo ""
+          echo "=== Querying /me/accounts (simple) ==="
+          TOKEN="${INSTAGRAM_ACCESS_TOKEN}"
+          curl -s "https://graph.facebook.com/v25.0/me/accounts?fields=id%2Cname%2Cinstagram_business_account&access_token=${TOKEN}"
