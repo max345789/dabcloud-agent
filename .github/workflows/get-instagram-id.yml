@@ -1,0 +1,19 @@
+name: Get Instagram Account ID (temp)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  get-id:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Query Instagram Business Account ID
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+        run: |
+          echo "=== Querying /me/accounts ==="
+          curl -s "https://graph.facebook.com/v25.0/me/accounts?fields=id,name,instagram_business_account{id,name,username}&access_token=${INSTAGRAM_ACCESS_TOKEN}" | python3 -m json.tool
+
+          echo ""
+          echo "=== Querying /me directly ==="
+          curl -s "https://graph.facebook.com/v25.0/me?fields=id,name&access_token=${INSTAGRAM_ACCESS_TOKEN}" | python3 -m json.tool
