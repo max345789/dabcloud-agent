@@ -1,10 +1,13 @@
-import { readFileSync } from "fs";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
 import OpenAI from "openai";
+import { loadConfig } from "./config.js";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const config = JSON.parse(readFileSync(join(__dirname, "config/settings.json"), "utf-8"));
+const config = loadConfig();
+
+if (!config.openai_api_key) {
+  console.error("Missing OpenAI API key. Set OPENAI_API_KEY or config/settings.json.");
+  process.exit(1);
+}
+
 const client = new OpenAI({ apiKey: config.openai_api_key });
 
 const content = `Repurposing content is one of the smartest things a creator can do. Instead of writing from scratch every day, you take one well-researched piece and extract maximum value from it. Turn your blog post intro into a LinkedIn hook. Extract key facts for Twitter threads. Turn subheadings into Instagram carousels. One input, ten outputs.`;

@@ -1,0 +1,31 @@
+{
+  "brand": "DabCloud",
+  "default_tone": "Professional",
+  "check_interval_minutes": 60,
+  "post_times": ["08:00", "12:00", "18:00"],
+  "openai_api_key": "YOUR_OPENAI_API_KEY",
+  "platforms": {
+    "linkedin": {
+      "enabled": true,
+      "access_token": "YOUR_LINKEDIN_ACCESS_TOKEN",
+      "person_urn": "YOUR_LINKEDIN_PERSON_URN"
+    },
+    "twitter": {
+      "enabled": false,
+      "api_key": "",
+      "api_secret": "",
+      "access_token": "",
+      "access_token_secret": ""
+    },
+    "facebook": {
+      "enabled": false,
+      "page_access_token": "",
+      "page_id": ""
+    },
+    "instagram": {
+      "enabled": false,
+      "access_token": "",
+      "ig_user_id": ""
+    }
+  }
+}

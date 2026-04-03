@@ -1,34 +1,41 @@
 /**
  * DabCloud Content Repurposing Agent
  * Runs in the background on your Mac.
- * Reads queue.csv → generates content via Claude → posts to platforms → logs results.
+ * Reads queue.csv -> generates content -> posts to platforms -> logs results.
  */
-
-import { readFileSync } from "fs";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
 
 import { generateContent } from "./generator.js";
 import { postToPlatform } from "./poster.js";
 import { getPendingItems, markAsProcessing, markAsDone, markAsFailed, logToPosted } from "./queue.js";
 import { log } from "./logger.js";
+import { CONFIG_PATH, isDryRunEnabled, loadConfig, platformHasCredentials } from "./config.js";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const CONFIG_PATH = join(__dirname, "config/settings.json");
-
-// ─── Load config ─────────────────────────────────────────────────────────────
-function loadConfig() {
-  try {
-    return JSON.parse(readFileSync(CONFIG_PATH, "utf-8"));
-  } catch (e) {
-    log.error(`Cannot read config: ${e.message}`);
-    process.exit(1);
-  }
+function buildDryRunPreview(item, platform) {
+  const snippet = item.content.replace(/\s+/g, " ").trim().slice(0, 220);
+  return `[DRY RUN ${platform.toUpperCase()}]\n${item.title}\n\n${snippet}${snippet.length >= 220 ? "..." : ""}`;
 }
 
-// ─── Check if it's a scheduled post time ─────────────────────────────────────
+function getConfiguredPlatforms(platformNames, config, dryRun) {
+  return platformNames.filter((platform) => {
+    if (dryRun) return true;
+
+    const platformConfig = config.platforms?.[platform];
+    if (!platformConfig?.enabled) {
+      log.warn(`${platform} is disabled in settings. Skipping.`);
+      return false;
+    }
+
+    if (!platformHasCredentials(platform, platformConfig)) {
+      log.warn(`${platform} is enabled but missing credentials. Skipping.`);
+      return false;
+    }
+
+    return true;
+  });
+}
+
 function isPostTime(postTimes) {
-  const now = new Date();
+  const now = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
   const currentTime = now.toLocaleTimeString("en-IN", {
     hour: "2-digit", minute: "2-digit", hour12: false,
     timeZone: "Asia/Kolkata",
@@ -40,37 +47,71 @@ function isPostTime(postTimes) {
   });
 }
 
-// ─── Process one queue item ───────────────────────────────────────────────────
-async function processItem(item, config) {
+function getNextScheduledRun(postTimes) {
+  const now = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
+  const candidates = postTimes.map((time) => {
+    const [hours, minutes] = time.split(":").map(Number);
+    const candidate = new Date(now);
+    candidate.setHours(hours, minutes, 0, 0);
+    if (candidate <= now) {
+      candidate.setDate(candidate.getDate() + 1);
+    }
+    return candidate;
+  });
+
+  return candidates.sort((left, right) => left.getTime() - right.getTime())[0];
+}
+
+function formatIstDate(date) {
+  return date.toLocaleString("en-IN", {
+    timeZone: "Asia/Kolkata",
+    hour: "2-digit",
+    minute: "2-digit",
+    day: "2-digit",
+    month: "short",
+  });
+}
+
+async function processItem(item, config, options = {}) {
+  const { dryRun = false } = options;
+
   log.divider();
-  log.info(`Processing: "${item.title}"`);
+  log.info(`${dryRun ? "Previewing" : "Processing"}: "${item.title}"`);
   log.info(`Platforms: ${item.platforms}`);
 
-  markAsProcessing(item.id);
-
-  const platforms = item.platforms.split(",").map((p) => p.trim());
+  const platforms = item.platforms.split(",").map((p) => p.trim()).filter(Boolean);
+  const configuredPlatforms = getConfiguredPlatforms(platforms, config, dryRun);
   const results = [];
   const errors = [];
 
-  for (const platform of platforms) {
-    const platformConfig = config.platforms[platform];
+  if (!dryRun) {
+    markAsProcessing(item.id);
+  }
 
-    if (!platformConfig?.enabled) {
-      log.warn(`${platform} is disabled in settings. Skipping.`);
-      continue;
-    }
+  if (configuredPlatforms.length === 0) {
+    log.warn("No requested platforms are ready to run.");
+    return;
+  }
 
-    // Step 1: Generate content
-    log.info(`Generating ${platform} content...`);
+  for (const platform of configuredPlatforms) {
+    const platformConfig = config.platforms?.[platform] || {};
+
+    log.info(`${dryRun ? "[dry-run] " : ""}Generating ${platform} content...`);
     let generatedText;
     try {
-      generatedText = await generateContent(
-        item.content,
-        platform,
-        item.tone || config.default_tone,
-        config.brand,
-        config.openai_api_key
-      );
+      if (config.openai_api_key) {
+        generatedText = await generateContent(
+          item.content,
+          platform,
+          item.tone || config.default_tone,
+          config.brand,
+          config.openai_api_key
+        );
+      } else if (dryRun) {
+        generatedText = buildDryRunPreview(item, platform);
+      } else {
+        throw new Error("OpenAI API key missing");
+      }
       log.success(`${platform} content generated (${generatedText.length} chars)`);
     } catch (err) {
       log.error(`Failed to generate for ${platform}: ${err.message}`);
@@ -78,10 +119,17 @@ async function processItem(item, config) {
       continue;
     }
 
-    // Brief pause between API calls
-    await new Promise((r) => setTimeout(r, 1000));
+    if (!dryRun) {
+      await new Promise((r) => setTimeout(r, 1000));
+    }
 
-    // Step 2: Post to platform
+    if (dryRun) {
+      const preview = generatedText.replace(/\n+/g, " ").slice(0, 120);
+      log.info(`[dry-run] Skipping live post to ${platform}. Preview: ${preview}${preview.length >= 120 ? "..." : ""}`);
+      results.push({ platform, dry_run: true, preview: generatedText });
+      continue;
+    }
+
     log.info(`Posting to ${platform}...`);
     try {
       const postResult = await postToPlatform(platform, generatedText, platformConfig);
@@ -92,11 +140,14 @@ async function processItem(item, config) {
       errors.push({ platform, stage: "post", error: err.message });
     }
 
-    // Pause between platforms to be respectful of rate limits
     await new Promise((r) => setTimeout(r, 2000));
   }
 
-  // Mark queue item status
+  if (dryRun) {
+    log.info(`Dry run complete for "${item.title}". Queue was not modified.`);
+    return;
+  }
+
   if (errors.length === 0) {
     markAsDone(item.id);
     logToPosted(item, results);
@@ -111,14 +162,20 @@ async function processItem(item, config) {
   }
 }
 
-// ─── Main agent loop ──────────────────────────────────────────────────────────
 async function runAgent() {
   const config = loadConfig();
-  const intervalMs = (config.check_interval_minutes || 60) * 60 * 1000;
+  const force = process.argv.includes("--force");
+  const runOnce = force || process.argv.includes("--once") || isDryRunEnabled();
+  const dryRun = isDryRunEnabled();
 
   log.info(`DabCloud Agent started — ${config.brand}`);
-  log.info(`Checking queue every ${config.check_interval_minutes} minutes`);
   log.info(`Scheduled post times: ${config.post_times.join(", ")} IST`);
+  if (!config.__meta?.hasFileConfig) {
+    log.info(`Config file not found at ${CONFIG_PATH}. Falling back to environment variables.`);
+  }
+  if (dryRun) {
+    log.info("Dry-run mode enabled. Content is generated or simulated, but nothing will be posted.");
+  }
   log.divider();
 
   async function tick() {
@@ -132,33 +189,53 @@ async function runAgent() {
 
     log.info(`Found ${pending.length} pending item(s) in queue.`);
 
-    // Check if we're in a scheduled post window (or in --force mode)
-    const force = process.argv.includes("--force");
     if (!force && !isPostTime(config.post_times)) {
       log.info(`Not a scheduled post time. Next windows: ${config.post_times.join(", ")} IST`);
       log.info(`Use: node agent.js --force  to post immediately`);
       return;
     }
 
-    // Process one item per tick (to avoid rate limits)
     const item = pending[0];
-    await processItem(item, config);
+    const requestedPlatforms = item.platforms.split(",").map((platform) => platform.trim()).filter(Boolean);
+    const readyPlatforms = getConfiguredPlatforms(requestedPlatforms, config, dryRun);
+
+    if (!dryRun && !config.openai_api_key) {
+      log.error(`Missing OpenAI API key. Set OPENAI_API_KEY or create ${CONFIG_PATH}.`);
+      return;
+    }
+
+    if (readyPlatforms.length === 0) {
+      log.warn("No enabled platforms with complete credentials are available for the next queue item.");
+      return;
+    }
+
+    await processItem(item, config, { dryRun });
 
     if (pending.length > 1) {
       log.info(`${pending.length - 1} more items in queue. Will process at next scheduled time.`);
     }
   }
 
-  // Run immediately on start
   await tick();
 
-  // Then run on interval
-  setInterval(async () => {
-    await tick();
-  }, intervalMs);
+  if (runOnce) {
+    return;
+  }
+
+  async function scheduleNextTick() {
+    const nextRun = getNextScheduledRun(config.post_times);
+    const delayMs = Math.max(1000, nextRun.getTime() - Date.now());
+    log.info(`Next scheduled check: ${formatIstDate(nextRun)} IST`);
+
+    setTimeout(async () => {
+      await tick();
+      await scheduleNextTick();
+    }, delayMs);
+  }
+
+  await scheduleNextTick();
 }
 
-// ─── Start ────────────────────────────────────────────────────────────────────
 runAgent().catch((err) => {
   log.error(`Agent crashed: ${err.message}`);
   process.exit(1);

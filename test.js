@@ -1,13 +1,15 @@
-import { readFileSync } from "fs";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
 import OpenAI from "openai";
+import { loadConfig } from "./config.js";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const config = JSON.parse(readFileSync(join(__dirname, "config/settings.json"), "utf-8"));
+const config = loadConfig();
 
 console.log("Key found:", config.openai_api_key ? "YES — " + config.openai_api_key.substring(0, 12) + "..." : "NO KEY");
 console.log("Testing OpenAI connection...\n");
+
+if (!config.openai_api_key) {
+  console.log("FAILED: Missing OpenAI API key. Set OPENAI_API_KEY or config/settings.json.");
+  process.exit(1);
+}
 
 const client = new OpenAI({ apiKey: config.openai_api_key });
 

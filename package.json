@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node agent.js",
     "force": "node autonomous.js --force",
+    "dry-run": "node agent.js --force --dry-run",
     "add": "node add.js",
     "list": "node add.js --list"
   },

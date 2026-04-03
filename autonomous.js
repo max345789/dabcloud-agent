@@ -2,26 +2,10 @@ import { readFileSync, appendFileSync, existsSync, mkdirSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import OpenAI from "openai";
+import { loadConfig, platformHasCredentials } from "./config.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
-// Load config from file or fall back to environment variables (for Render/CI deployment)
-const configPath = join(__dirname, "config/settings.json");
-const config = existsSync(configPath)
-  ? JSON.parse(readFileSync(configPath, "utf-8"))
-  : {
-      openai_api_key: process.env.OPENAI_API_KEY,
-      post_times: ["08:00", "12:00", "18:00"],
-      platforms: {
-        linkedin: {
-          enabled: process.env.LINKEDIN_ENABLED !== "false",
-          access_token: process.env.LINKEDIN_ACCESS_TOKEN,
-          person_urn: process.env.LINKEDIN_PERSON_URN,
-        },
-      },
-    };
-
-const client = new OpenAI({ apiKey: config.openai_api_key });
+const config = loadConfig();
 
 if (!existsSync(join(__dirname, "logs"))) mkdirSync(join(__dirname, "logs"));
 if (!existsSync(join(__dirname, "posted"))) mkdirSync(join(__dirname, "posted"));
@@ -45,6 +29,7 @@ function savePostedTopic(topic) {
 }
 
 async function findTrendingTopic() {
+  const client = new OpenAI({ apiKey: config.openai_api_key });
   const usedTopics = getPostedTopics();
   const avoidList = usedTopics.slice(-20).join(", ") || "none yet";
   const res = await client.chat.completions.create({
@@ -55,6 +40,7 @@ async function findTrendingTopic() {
 }
 
 async function generateLinkedInPost(topic) {
+  const client = new OpenAI({ apiKey: config.openai_api_key });
   const res = await client.chat.completions.create({
     model: "gpt-4o", max_tokens: 1024,
     messages: [{ role: "user", content: `You are a LinkedIn content expert for DabCloud (dabcloud.in) — AI content repurposing agency. Write a LinkedIn post about: Topic: ${topic.topic}, Angle: ${topic.angle}, Key points: ${topic.key_points.join(", ")}. Rules: bold 1-line hook, line breaks between points, 3-5 insights, mention ContentForge AI naturally, end with a question, 3-5 hashtags, max 1500 chars, sound human. Output ONLY the post.` }]
@@ -87,6 +73,14 @@ async function run() {
   log("INFO ", "DabCloud Autonomous Agent started");
   if (!isPostTime()) { log("INFO ", `Not post time. Scheduled: ${(config.post_times || ["08:00","12:00","18:00"]).join(", ")} IST`); return; }
   try {
+    if (!config.openai_api_key) {
+      log("ERROR", "Missing OpenAI API key. Set OPENAI_API_KEY or config/settings.json.");
+      return;
+    }
+    if (!config.platforms?.linkedin?.enabled || !platformHasCredentials("linkedin", config.platforms.linkedin)) {
+      log("ERROR", "LinkedIn is not fully configured. Set LINKEDIN_ACCESS_TOKEN and LINKEDIN_PERSON_URN.");
+      return;
+    }
     log("INFO ", "Finding trending topic...");
     const topic = await findTrendingTopic();
     log("OK   ", `Topic: "${topic.topic}"`);
